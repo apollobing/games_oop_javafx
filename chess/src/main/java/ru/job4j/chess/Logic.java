@@ -22,9 +22,11 @@ public final class Logic {
 
     private boolean free(Cell[] steps) throws OccupiedCellException {
         for (Cell step: steps) {
-            for (int i = 0; i < index; i++) {
-                if (step.equals(figures[i].position())) {
-                    throw new OccupiedCellException();
+            for (Figure figure : figures) {
+                if (figure != null && step.equals(figure.position())) {
+                    throw new OccupiedCellException(
+                            String.format("Cell %s is not empty", step)
+                    );
                 }
             }
         }
